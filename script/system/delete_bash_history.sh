@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-history -c && history -w
+echo 'faites les commandes suivantes->  history -c && history -w'
