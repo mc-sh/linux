@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 . ./lib/common.sh
+error_handler
 
-if [[ $1 == "user_part" ]]; then
+HELPER="/usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret"
+
+if [[ ${1:-} == "user_part" ]]; then
 git config --global credential.helper /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
 git config --global credential.https://github.com.username x-access-token
 git config --global user.name 'mc-sh'
@@ -13,13 +16,17 @@ fi
 need_privilege
 
 sudo apt update
-sudo apt install -y git gnome-keyring libsecret-1-0 libsecret-1-dev libsecret-common
+sudo apt install -y git gnome-keyring libsecret-1-0 libsecret-common
 
-HELPER="/usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret"
+sudo apt-mark manual git gnome-keyring libsecret-1-0 libsecret-common || true
+
 if [ ! -x "$HELPER" ]; then
+    sudo apt install -y libsecret-1-dev
     echo "Compilation du helper libsecret..."
-    cd /usr/share/doc/git/contrib/credential/libsecret
+    pushd /usr/share/doc/git/contrib/credential/libsecret > /dev/null
     sudo make
+    popd > /dev/null
+    sudo apt autoremove -y libsecret-1-dev || true
 else
     echo "Helper libsecret déjà compilé."
 fi
