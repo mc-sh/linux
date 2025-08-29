@@ -10,5 +10,5 @@ remote(){
 [[ $1 == 'create' ]] && git init && remote && git branch -M main
 git add . 2> /dev/null || { echo "Try create as argument"; exit 1; }
 read -p 'commit commentaire' commit
-git commit -m '$commit'
+git commit -m "$commit"
 git push -u origin main
