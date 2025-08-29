@@ -1,0 +1,11 @@
+*.log
+*.tmp
+*~
+*.swp
+.env
+*.secret
+*.key
+*.pem
+.DS_Store
+__pycache__/
+.venv/
