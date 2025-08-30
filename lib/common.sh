@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 need_privilege(){
-	[[ "$EUID" != 0 ]] && echo "Doit etre demarrer avec Sudo" && exit 1
+	[[ "$EUID" != 0 ]] && echo "Doit etre demarrer avec Sudo" && exit 1 || true
 }
 
 need_exec_as_user(){

@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
-
-#!/usr/bin/env bash
 set -euo pipefail
+. ../../lib/common.sh
+need_privilege
+
+# On supprime les fichier tmp si ça plante ou avant de quitter le script
+trap 'rm -f "${LSUSB_BEFORE:-}" "${IP_BEFORE:-}" "${LSUSB_NOW:-}" "${IP_NOW:-}"' EXIT INT TERM
 
 echo "[*] Débranche toutes les clés USB non essentielles."
 read -p "[*] Appuie sur Entrée puis branche la clé à tester..." _
@@ -13,9 +16,9 @@ lsusb > "$LSUSB_BEFORE"
 ip -o link | awk -F': ' '{print $2}' > "$IP_BEFORE"
 
 echo "[*] Attente de la nouvelle clé (15 s max)..."
+LSUSB_NOW=$(mktemp)
 for i in {1..30}; do
   sleep 0.5
-  LSUSB_NOW=$(mktemp)
   lsusb > "$LSUSB_NOW"
   NEW_LINES=$(comm -13 <(sort "$LSUSB_BEFORE") <(sort "$LSUSB_NOW") || true)
   if [[ -n "$NEW_LINES" ]]; then
@@ -34,6 +37,15 @@ if [[ -z "${VID:-}" ]]; then
   exit 1
 fi
 
+# Debug infos périphérique détecté
+echo -e "\n=== DEBUG: Nouveau périphérique détecté ======================="
+echo "Bus/Device:   $BUS_DEV"
+echo "VendorID:     $VID"
+echo "ProductID:    $PID"
+echo "Description:  $NEW_USB_LINE"
+echo -e "===============================================================\n"
+
+
 # Vérifier les classes USB exposées
 echo "[*] Inspection des interfaces USB (classes)..."
 CLASSES=$(lsusb -v -d ${VID}:${PID} 2>/dev/null | grep -i "bInterfaceClass" || true)
@@ -42,6 +54,7 @@ CLASSES=$(lsusb -v -d ${VID}:${PID} 2>/dev/null | grep -i "bInterfaceClass" || t
 IP_NOW=$(mktemp)
 ip -o link | awk -F': ' '{print $2}' > "$IP_NOW"
 NEW_IFACES=$(comm -13 <(sort "$IP_BEFORE") <(sort "$IP_NOW") || true)
+
 
 # Analyse
 SUSPECT_REASON=()
