@@ -39,10 +39,10 @@ fi
 
 # Debug infos périphérique détecté
 echo -e "\n=== DEBUG: Nouveau périphérique détecté ======================="
+echo "Description:  $NEW_USB_LINE"
 echo "Bus/Device:   $BUS_DEV"
 echo "VendorID:     $VID"
 echo "ProductID:    $PID"
-echo "Description:  $NEW_USB_LINE"
 echo -e "===============================================================\n"
 
 
