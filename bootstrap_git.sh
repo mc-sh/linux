@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+#Avant toute chose connecte toi à github et va dans setting/dev/tokens/fine-grained. Donne les droits juste à un repo puis ajoute le droit "CONTENT" en READ/WRITE
+
 . ./lib/common.sh
 error_handler
 

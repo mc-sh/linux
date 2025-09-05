@@ -6,7 +6,7 @@
 need_privilege
 
 #sudo shred -v -n 7 -z /dev/sdX
-#sudo shred -c -n 7 -z --remove fichier.txt
+#sudo shred -v -n 7 -z --remove fichier.txt
 
 #pour etre quick
 #sudo dd if=/dev/zero of=/dev/sda bs=4M status=progress
