@@ -25,3 +25,4 @@ echo "vim pour regarder et ajuster la commande en consequence"
 
 #diff -u <(sha512sum GIGABYTE.bin | awk '{print $1}') <(sha512sum ~/trash/GIGABYTE.bin | awk '{print $1}')
 
+#sudo mkfs.ntfs -c (a compléter)
