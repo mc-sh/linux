@@ -2,6 +2,10 @@
 
 #Avant toute chose connecte toi à github et va dans setting/dev/tokens/fine-grained. Donne les droits juste à un repo puis ajoute le droit "CONTENT" en READ/WRITE
 
+#Si le system réagie bizarrement, sudo apt install -y seahorse pour valider l'entré de la clef
+
+#pi OS demande de mettre un master password tandis que parrot utilise celui de la session par défaut
+
 . ./lib/common.sh
 error_handler
 
