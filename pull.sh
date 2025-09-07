@@ -2,5 +2,6 @@
 . ../lib/common.sh
 need_exec_as_user
 # git fetch
-# git merge --rebase (ecraser le repo distant)
+# git merge --rebase (écraser les historique en Y et les SHA sont réécrit)
+# git config pull.rebase false  # merge
 git pull
