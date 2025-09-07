@@ -17,4 +17,6 @@
 
 #diff -u <(xxd ~/Region_ME_ME_region.rgn) <(xxd ~/Downloads/8.1.2.1318_1.5MB_PRD_RGN.bin) > diff.txt
 
-#BUP ET FTPR doivent être isolé pour vérifier leur hash, car ce sont les deux seul élément qui ne sont pas changeant (vivant) C'EST LE CODE EXÉCUTABLE (le reste : log, nvram)
+#BUP, FTPR, NFTP doivent être isolé pour vérifier leur hash, car ce sont les deux seul élément qui ne sont pas changeant (vivant) C'EST LE CODE EXÉCUTABLE (le reste : log, nvram)
+
+#MDMV est aussi une section de code mais semble être le code des constructeur de carte mère OEM comme GIGABYTE (le code qui permet d'adapter intel me à leur propre motherboard)
