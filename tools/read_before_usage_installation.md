@@ -1,6 +1,10 @@
+les tools qui doivent être compiler avec make : envytools rom-parser
+faire
+make -C $REPO
+
 LES TOOL QUE ÇA CONCERNE : chipsec MEanalyser
 
-POUR UTILISER UNE COMMANDE INSTALLÉ DEPUIS GITHUB!!!!
+POUR UTILISER UNE COMMANDE INSTALLÉ DEPUIS GITHUB QUI UTILISE PYTHON!!!!
 TOUJOURS COMMENCER PAR "source ~/venvs/$tool/bin/activate"
 
 POUR LES MISES À JOUR DES TOOL GITHUB

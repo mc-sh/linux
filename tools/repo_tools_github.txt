@@ -1,3 +1,5 @@
 git clone https://github.com/platomav/MEAnalyzer.git
 git clone https://github.com/chipsec/chipsec.git
 git clone -b new_engine https://github.com/LongSoft/UEFITool.git
+git clone https://github.com/awilliam/rom-parser.git
+git clone https://github.com/envytools/envytools
