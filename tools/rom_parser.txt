@@ -1,0 +1,14 @@
+# parser générique d’Option ROM
+https://github.com/awilliam/rom-parser.git
+cd rom-parser
+make (si pas make d'installé, peux s'installer via build-essential)
+
+
+##pas sur de ce que make -C rom-parser fait##
+make -C rom-parser
+./rom-parser/rom-parser ~/vbios/EVGA.RTX3090.24576.200907_1.rom
+
+# outils Nouveau (nvbios) pour décoder un VBIOS NVIDIA
+git clone https://github.com/envytools/envytools
+make -C envytools
+./envytools/nvbios ~/vbios/EVGA.RTX3090.24576.200907_1.rom > vbios_report.txt
