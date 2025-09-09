@@ -36,3 +36,7 @@ dd if=vbios_stock.rom of=stock_gop.bin bs=1 skip=$((0x19000+0x18))  count=$((siz
 # 5) Hashs bit-à-bit
 sha256sum live_legacy.bin  stock_legacy.bin
 sha256sum live_gop.bin     stock_gop.bin
+
+
+#en bonus sur la machine a analyser (le .rom est celuis de reference en comparaison avec celui dans la machine)
+sudo ./nvflash --index=0 --verify vbios_stock.rom
