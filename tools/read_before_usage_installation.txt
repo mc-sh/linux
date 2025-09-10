@@ -1,0 +1,61 @@
+les tools qui doivent être compiler avec make : envytools rom-parser
+faire
+make -C $REPO
+
+LES TOOL QUE ÇA CONCERNE : chipsec MEanalyser
+
+POUR UTILISER UNE COMMANDE INSTALLÉ DEPUIS GITHUB QUI UTILISE PYTHON!!!!
+TOUJOURS COMMENCER PAR "source ~/venvs/$tool/bin/activate"
+
+POUR LES MISES À JOUR DES TOOL GITHUB
+git pull
+
+**si ne fonctionne pas car grosse mise ajour python**
+
+rm -rf ~/venvs/$tool
+python3 -m venv ~/venvs/$tool
+. ~/venvs/$tool/bin/activate
+which python (doit etre le chemain du tool)
+cd ~/tools/$tool
+git pull
+pip install -e .
+POUR APPELER LE SCRIPT APRES INSTALLATION (PYTHON3 -M MEA.PY ~/SPI_ME.BIN)
+deactivate (pour get out venv)
+
+SI DOIT INSTALLÉ DÉPENDENCE
+. ~/venvs/$tool/bin/activate
+pip install -U pip #(pour updaté pip)
+SI PAS INSTALLÉ
+pip install -e . #(dans le dossier)
+pip install crccheck autrePaquet
+
+POUR UTILISATION (CHIPSEC)
+apres source venv
+PERMET DE VOIR LES MODULES INSTALLÉ
+sudo python3 -m chipsec_main -i
+UTILISER UN MODULE
+sudo python3 -m chipsec_main -m common.spi_access -v
+
+MODULE À UTILISÉ
+common.spi_access -v
+common.spi_lock -v
+common.spi_desc -v (CRITIQUE module important pour fd (flash descriptor (permmission écriture))
+common.spi_fdopss -v (CRITIQUE fd bypasser d'usine, regarde si présent)
+common.bios_wp -v BONUS --> sudo flashrom -p internal --wp-status (flashrom prend en consideration les protection logiciel exemple si iomem=relaxed n'est pas activé
+common.me_mfg_mode -v
+common.bios_kbrd_buffer -v (moins important, rarement un vecteur sur carte moderne)
+common.smrr -v
+common.memconfig -v
+common.bios_smi -v
+common.ia32cfg -v
+common.smm -v
+common.uefi.access_uefispec -v
+common.uefi.s3bootscript -v (moins important, possiblement plus supporté)
+common.secureboot.variables -v
+common.smm_dma -v
+
+CONFIRMATION HORS DE TOUT DOUTE SI
+fd est fermé
+me pas en manufacturing mode
+bios wp/smm activé
+secure boot bien configuré
