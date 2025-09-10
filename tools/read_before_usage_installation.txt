@@ -55,7 +55,13 @@ common.secureboot.variables -v
 common.smm_dma -v
 
 CONFIRMATION HORS DE TOUT DOUTE SI
+toujours faire les test en mode UEFI pour une bonne lecture
 fd est fermé
 me pas en manufacturing mode
 bios wp/smm activé
 secure boot bien configuré
+
+POUR VERIFIER AVANT UTILISÉ FLASHROM ET CHIPSEC
+cat /sys/kernel/security/lockdown 
+si pas [none]
+doit désactiver le secure boot
