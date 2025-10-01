@@ -9,8 +9,37 @@
 
 #find /usr/lib/live/mount/medium -type f \( -name "grub.cfg" -o -name "syslinux.cfg" -o -name "isolinux.cfg" \)
 
-#sudo flashrom -p internal -r full_spi.bin
+#extract with binwalk
+binwalk -e ~/full_spi.bin
 
+#pour dumper la spi
+sudo flashrom -p internal -r full_spi.bin
+
+#pour dumper la spi entière si flashrom ne fonctionne pas
+sudo python3 -m chipsec_util spi dump jesus.bin
+
+#pour avoir des info sur les section spi live
+sudo python3 -m chipsec_util spi info
+
+#pour voir le subconstructeur de la nic (gigabyte a fait mon nic FW)
+lspci -nnk | grep -A3 -i Ethernet
+
+#pour voir si des mises a jour intel son disponible
+sudo ./nvmupdate64e -i -l jesus.txt
+
+#pour dumper l'hexa de gbe
+sudo ethtool -e enp2s0
+
+#pour dumper le bin de la nvm
+sudo ethtool -e enp2s0 raw on > raw_gbe.bin
+
+#pour dumper le bin du nvm
+sudo ./nvmupdate64e -i -l jesus.txt
+
+#pour voir la version et acces EEPROM
+sudo ethtool -i enp2s0
+
+sudo dmesg | grep iwlwifi
 #extraire "as is" la region intel me et sauvegarder sous
 
 #analyse avec MEanalyser, identifier la version exacte, puis télécharger exactement la même version de intel ME sur le depot officiel de platomav (winraid.level1techs.com...) ensuite (mega.nz (cloud crypté))

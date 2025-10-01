@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-. ../../lib/common.sh
+. ../../../lib/common.sh
 need_privilege
 
 # On supprime les fichier tmp si ça plante ou avant de quitter le script

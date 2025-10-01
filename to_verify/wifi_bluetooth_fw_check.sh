@@ -1,3 +1,5 @@
+#C'est firmware sont loader à partir du kernel donc si os sain --> firmware sain pour bluetooth et wifi
+
 # Create a Bash script that audits Wi‑Fi & Bluetooth firmware on Linux
 script = r'''#!/usr/bin/env bash
 # wifi_bt_firmware_audit.sh

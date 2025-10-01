@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-. ../../lib/common.sh
+. ../../../lib/common.sh
 need_privilege
 
 sudo dmesg -C

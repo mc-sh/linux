@@ -3,7 +3,7 @@
 #skip= le start hex dans MEanalyser
 #count= le size hex dans MEanalyser
 
-#dd if=me_region.bin of=ftpr.bin bs=1 skip=602112 count=479232
+dd if=me_region.bin of=ftpr.bin bs=1 skip=602112 count=$((0x00D000))
 
 #POUR ROM-PARSER (VBIOS)
 #dd if=test0.rom of=legacy_vga.bin bs=1 skip=$((0x9200+0x18)) count=$((0x19000-0x9200-0x18))
@@ -39,4 +39,7 @@ sha256sum live_gop.bin     stock_gop.bin
 
 
 #en bonus sur la machine a analyser (le .rom est celuis de reference en comparaison avec celui dans la machine)
-sudo ./nvflash --index=0 --verify vbios_stock.rom
+sudo ./nvflash --index=0 --verify vbios_stock.rom #vérifie bit a bit après un flash
+
+#RECETTE MAGIQUE
+sudo ./nvflash --index=0 --compare vbios_stock.rom #vérifie seulement les payload static (prouve que pas hacké)
