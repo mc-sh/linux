@@ -22,7 +22,7 @@ sudo python3 -m chipsec_util spi dump jesus.bin
 sudo python3 -m chipsec_util spi info
 
 #pour voir le subconstructeur de la nic (gigabyte a fait mon nic FW)
-lspci -nnk | grep -A3 -i Ethernet
+lspci -nnk | grep -iA4 Ethernet
 
 #pour voir si des mises a jour intel son disponible
 sudo ./nvmupdate64e -i -l jesus.txt
@@ -34,7 +34,12 @@ sudo ethtool -e enp2s0
 sudo ethtool -e enp2s0 raw on > raw_gbe.bin
 
 #pour dumper le bin du nvm
-sudo ./nvmupdate64e -i -l jesus.txt
+sudo ./nvmupdate64e -b jesus.txt
+sudo ./bootutil -SAVEIMAGE -NIC=1 -FILE=JESUS.BIN
+
+#pour voir si bootutil ou nvmupdate supporte le driver igc (soit celui utilisé pour I225-V)
+strings bootutil | grep -i igc
+sudo ./nvmupdate64e -v
 
 #pour voir la version et acces EEPROM
 sudo ethtool -i enp2s0
