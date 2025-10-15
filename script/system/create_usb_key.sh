@@ -19,3 +19,6 @@
 #diff -u <(sha512sum GIGABYTE.bin | awk '{print $1}') <(sha512sum ~/trash/GIGABYTE.bin | awk '{print $1}')
 
 #sudo mkfs.ntfs -c (a compléter)
+
+#pour créer une clef windows à partir de linux (ne fonctionne pas en secure boot) https://www.microsoft.com/software-download/
+sudo woeusb-ng --device ~/windows.iso /dev/sdX
