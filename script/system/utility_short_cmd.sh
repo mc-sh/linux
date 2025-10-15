@@ -26,3 +26,12 @@ grep -Rin "blabla"
 #voir paquet qui depende du paquet
 #apt-cache rdepends <paquet>
 #apt rdepends <paquet>
+
+#pour crypter un fichier symétrique
+gpg -c fichier.txt
+
+#pour décrypter un fichier symétrique
+gpg -d fichier.txt
+
+#pour tester si ca marche faire avant test
+gpgconf --kill gpg-agent
