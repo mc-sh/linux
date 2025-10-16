@@ -22,3 +22,7 @@
 
 #pour créer une clef windows à partir de linux (ne fonctionne pas en secure boot) https://www.microsoft.com/software-download/
 sudo woeusb-ng --device ~/windows.iso /dev/sdX
+
+#pour bypass windows need ethernet
+shift + f10
+OOBE\BYPASSNRO
